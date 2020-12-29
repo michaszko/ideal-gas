@@ -51,15 +51,15 @@ double vec::operator^ (vec b){ // scalar product
 
 // Test main func 
 
-int main ()
-{
- vec first(12, 18), second(22,22), third;
- third  = first + second; 
- //third  = second - first;
- third  = first/2;
- third  = second - first;
- third = second*3;
- double scalprod = first^third;
- return 0;
-}
+// int main ()
+// {
+//  vec first(12, 18), second(22,22), third;
+//  third  = first + second; 
+//  //third  = second - first;
+//  third  = first/2;
+//  third  = second - first;
+//  third = second*3;
+//  double scalprod = first^third;
+//  return 0;
+// }
 
