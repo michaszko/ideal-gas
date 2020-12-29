@@ -5,11 +5,11 @@ public:
 	vec (double a, double b ){this->x=a; this->y = b; }
 	//~vec() TODO: maybe finally write a destructor 
 	//overloading  basic operators 
-	vec operator+ (vec &b);
+	vec operator+ (vec b);
 	vec operator- (vec b);
 	vec operator* (double val);
 	vec operator/ ( double val);
-	double operator^ (vec &b);
+	double operator^ (vec b);
 
 	//void SetVal(double val0 , double val1){this->x = val0; this->y = val1;}
 

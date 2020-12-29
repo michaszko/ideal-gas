@@ -5,7 +5,7 @@
 #include "Vector.h"
 
 	//overloading  basic operators 
-vec vec::operator+ (vec &b){
+vec vec::operator+ (vec b){
 	vec res;
 	res.x = this->x + b.x;
 	res.y = this->y + b.y;
@@ -42,7 +42,7 @@ vec vec::operator/ ( double val){
 	}
 	return res;
 }
-double vec::operator^ (vec &b){ // scalar product 
+double vec::operator^ (vec b){ // scalar product 
 	double res = 0;
 	res = this->x * b.x + this->y * b.y;
 	//std::cout<<" scalar product of vector  "<<this->x<<" "<< this->y << " and vector "<<b.x<<" "<<b.y<<" is equal to "<<res<<std::endl;
@@ -50,7 +50,7 @@ double vec::operator^ (vec &b){ // scalar product
 } 
 
 // Test main func 
-/*
+
 int main ()
 {
  vec first(12, 18), second(22,22), third;
@@ -62,4 +62,4 @@ int main ()
  double scalprod = first^third;
  return 0;
 }
-*/
+
