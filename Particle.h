@@ -9,8 +9,12 @@ public:
   void move(double);
   void draw(); 
 
+  bool isWallHit();
+
   vec position;
   vec velocity;
 
+
   sf::CircleShape shape;
+
 };
