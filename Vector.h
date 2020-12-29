@@ -10,6 +10,8 @@ public:
 	vec operator* (double val);
 	vec operator/ ( double val);
 	double operator^ (vec &b);
+
+	void SetVal(double val0 , double val1){this->x = val0; this->y = val1;}
 private:
 	double x,y;
 };
