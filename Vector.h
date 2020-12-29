@@ -11,10 +11,10 @@ public:
 	vec operator/ ( double val);
 	double operator^ (vec &b);
 
-	void SetVal(double val0 , double val1){this->x = val0; this->y = val1;}
+	//void SetVal(double val0 , double val1){this->x = val0; this->y = val1;}
 
-	double GetX(){return this->x;}
-	double GetY(){return this->y;}
-private:
+	//double GetX(){return this->x;}
+	//double GetY(){return this->y;}
+//private:
 	double x,y;
 };
