@@ -48,9 +48,5 @@ vec vec::operator/(double val) {
   return res;
 }
 double vec::operator^(vec b) { // scalar product
-  double res = 0;
-  res = this->x * b.x + this->y * b.y;
-  // std::cout<<" scalar product of vector  "<<this->x<<" "<< this->y << " and
-  // vector "<<b.x<<" "<<b.y<<" is equal to "<<res<<std::endl;
-  return res;
+  return this->x * b.x + this->y * b.y;
 }
