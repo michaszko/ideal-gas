@@ -1,4 +1,6 @@
 #include <cstdlib>
+#include <iostream>
+#include <math.h>
 
 class vec {
 public:
@@ -18,6 +20,10 @@ public:
   vec operator/(double val);
   double operator^(vec b);
 
-  // variables for 2D vector 
+  double norm();
+  vec normalize();
+
+  friend std::ostream &operator<<(std::ostream &out, const vec &b);
+  // variables for 2D vector
   double x, y;
 };

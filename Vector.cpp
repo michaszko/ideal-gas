@@ -47,6 +47,23 @@ vec vec::operator/(double val) {
   }
   return res;
 }
+
 double vec::operator^(vec b) { // scalar product
   return this->x * b.x + this->y * b.y;
+}
+
+double vec::norm() { // norm of a vector
+  return sqrt((*this) ^ (*this));
+}
+
+vec vec::normalize() { // normalized vector
+  return (*this) / ((*this).norm());
+}
+
+std::ostream &operator<<(std::ostream &out, const vec &b) { // for faster debugging 
+  // Since operator<< is a friend of the Point class, we can access Point's
+  // members directly.
+  out << "(" << b.x << ", " << b.y << ')'; // actual output done here
+
+  return out; // return std::ostream so we can chain calls to operator<<
 }
