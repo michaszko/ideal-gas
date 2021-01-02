@@ -5,3 +5,4 @@
 
   extern const int frame_rate = 60;
   extern const int radius = 5;
+  extern const int seed = 20;

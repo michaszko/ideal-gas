@@ -23,8 +23,8 @@ int main() {
     particles[i].position.x = rand() % H;
     particles[i].position.y = rand() % W;
 
-    particles[i].velocity.x = rand() % 20;
-    particles[i].velocity.y = rand() % 20;
+    particles[i].velocity.x = rand() % seed;
+    particles[i].velocity.y = rand() % seed;
 
     particles[i].shape.setRadius(radius);
   }
