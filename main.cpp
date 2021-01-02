@@ -2,17 +2,15 @@
 #include <SFML/Window.hpp>
 #include <stdlib.h> /* srand, rand */
 #include <time.h>   /* time */
+#include "Const.h" // most of the constants defined here 
 
 int main() {
   // Global variables
-  const int H = 800;  // height of the screen
-  const int W = 600;  // width of the screen
-  const int N = 500;  // number of particles - 500 is still good, 1000 not
-  const double deltatime = 0.2; // time of one step
+
 
   sf::RenderWindow window(sf::VideoMode(H, W), "Particles");  // render a window
   // set framerate - without it program is running as fast as it can
-  window.setFramerateLimit(60); 
+  window.setFramerateLimit(frame_rate); 
   // clock - just in case
   // sf::Clock dt;
 
@@ -28,7 +26,7 @@ int main() {
     particles[i].velocity.x = rand() % 20;
     particles[i].velocity.y = rand() % 20;
 
-    particles[i].shape.setRadius(5);
+    particles[i].shape.setRadius(radius);
   }
   
   // main loop
