@@ -33,3 +33,6 @@
 
 # Vim files
 *.vim
+
+# Obj 
+./obj
