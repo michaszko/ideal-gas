@@ -1,11 +1,21 @@
 #include "Particle.h"
 #include <SFML/Window.hpp>
+// #include <SFML/Graphics/RenderWindow.hpp>
 #include <stdlib.h> /* srand, rand */
 #include <time.h>   /* time */
-//#include "Const.h" // most of the constants defined here 
+#include "Const.h" // most of the constants defined here 
+
+// Global variables
+int H = 800; //screen heigh 
+int W = 600; //screen width 
+int N = 500;  // number of particles - 500 is still good, 1000 not
+
+int frame_rate = 60;
+int radius = 5;
+int seed = 20;
+double deltatime = 0.2; // time of one step
 
 int main() {
-  // Global variables
 
   sf::RenderWindow window(sf::VideoMode(H, W), "Particles");  // render a window
   // set framerate - without it program is running as fast as it can

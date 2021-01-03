@@ -1,7 +1,7 @@
 #include "Particle.h"
 //#include <SFML/Graphics/RenderWindow.hpp>
 #include <iostream>
-//#include "Const.h"
+// #include "Const.h"
 
 void Particle::move() {
   // Move the particle in the frame but check first if it is hitting a wall
