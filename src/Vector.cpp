@@ -1,7 +1,3 @@
-#include <cstdio>
-#include <cstdlib>
-#include <iostream>
-
 #include "Vector.h"
 
 // overloading  basic operators
@@ -60,7 +56,8 @@ vec vec::normalize() { // normalized vector
   return (*this) / ((*this).norm());
 }
 
-std::ostream &operator<<(std::ostream &out, const vec &b) { // for faster debugging 
+std::ostream &operator<<(std::ostream &out,
+                         const vec &b) { // for faster debugging
   // Since operator<< is a friend of the Point class, we can access Point's
   // members directly.
   out << "(" << b.x << ", " << b.y << ')'; // actual output done here

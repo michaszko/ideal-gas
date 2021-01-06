@@ -1,46 +1,44 @@
+#include "Const.h" // most of the constants defined here
 #include "Particle.h"
-#include <SFML/Window.hpp>
-// #include <SFML/Graphics/RenderWindow.hpp>
-#include <stdlib.h> /* srand, rand */
-#include <time.h>   /* time */
-#include "Const.h" // most of the constants defined here 
+#include <stdlib.h> // srand, rand
+#include <time.h>   // time
 
 // Global variables
-int H = 800; //screen heigh 
-int W = 600; //screen width 
-int N = 500;  // number of particles - 500 is still good, 1000 not
+int H = 800; // screen heigh
+int W = 600; // screen width
+int N = 500; // number of particles - 500 is still good, 1000 not
 
-int frame_rate = 60;
-int radius = 5;
-int seed = 20;
+int frame_rate = 60;    // frames per second
+int radius = 5;         // radius of every ball
+int max_speed = 20;     // maximal speed upon the generation of particles
 double deltatime = 0.2; // time of one step
 
 int main() {
 
-  sf::RenderWindow window(sf::VideoMode(H, W), "Particles");  // render a window
+  sf::RenderWindow window(sf::VideoMode(H, W), "Particles"); // render a window
   // set framerate - without it program is running as fast as it can
-  window.setFramerateLimit(frame_rate); 
+  window.setFramerateLimit(frame_rate);
   // clock - just in case
   // sf::Clock dt;
 
-  srand(time(NULL)); // for random numbers 
+  srand(time(NULL)); // for random numbers
 
-  Particle particles[N];  // create array of particles 
+  Particle particles[N]; // create array of particles
 
-  // initializing of pos, vel and radii of all particles 
+  // initializing of pos, vel and radii of all particles
   for (int i = 0; i < N; i++) {
     particles[i].position.x = rand() % H;
     particles[i].position.y = rand() % W;
 
-    particles[i].velocity.x = rand() % seed;
-    particles[i].velocity.y = rand() % seed;
+    particles[i].velocity.x = rand() % max_speed;
+    particles[i].velocity.y = rand() % max_speed;
 
     particles[i].shape.setRadius(radius);
   }
-  
+
   // main loop
   while (window.isOpen()) {
-    // checking intersections between particles 
+    // checking intersections between particles
     for (int i = 0; i < N; i++) {
       for (int j = i + 1; j < N; j++) {
         particles[i].isParticleHit(particles[j]);
