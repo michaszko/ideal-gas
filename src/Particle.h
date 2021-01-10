@@ -12,9 +12,11 @@ public:
 
   void isWallHit();
   void isParticleHit(Particle &);
+  int Which_side(); // checking on which side of the grid is the particle 
 
   vec position;
   vec velocity;
+
 
   sf::CircleShape shape;
 };

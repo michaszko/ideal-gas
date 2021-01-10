@@ -19,7 +19,6 @@ void Particle::isWallHit() {
 
   // Save the position of the next step of the particle
   vec next_pos = this->position + (this->velocity * deltatime);
-
   if ((next_pos.x + 2 * this->shape.getRadius() > H) || (next_pos.x < 0)) {
     // we are outside of side walls
     this->velocity.x = -this->velocity.x;
@@ -39,23 +38,35 @@ void Particle::isParticleHit(Particle &p) {
   // to velocities of both particles
   vec centre1, centre2, d;
   vec rad(1, 1);
-
+  // checking if the particle are on the same side, if not then do nothing 
+  if (this->Which_side() == p.Which_side()){
   // Tranformation of coords - form left top corner to center of a circle
-  centre1 = this->position + (this->velocity * deltatime) +
-            rad * this->shape.getRadius();
-  centre2 = p.position + (p.velocity * deltatime) + rad * p.shape.getRadius();
+    centre1 = this->position + (this->velocity * deltatime) +
+    rad * this->shape.getRadius();
+    centre2 = p.position + (p.velocity * deltatime) + rad * p.shape.getRadius();
 
   // Distance vector between two particles
-  d = centre2 - centre1;
+    d = centre2 - centre1;
 
   // if balls are close together
-  if (d.norm() <= this->shape.getRadius() + p.shape.getRadius()) {
+    if (d.norm() <= this->shape.getRadius() + p.shape.getRadius()) {
     // coeficiant of a interaction - derived from conservation of momentum
     // assuming that both paritcles has the same mass
-    double vel_correction_factor =
-        ((this->velocity - p.velocity) ^ d) / (d.norm() * d.norm());
+      double vel_correction_factor =
+      ((this->velocity - p.velocity) ^ d) / (d.norm() * d.norm());
     // changing velocities of both particles
-    this->velocity = this->velocity - d * vel_correction_factor;
-    p.velocity = p.velocity + d * vel_correction_factor;
+      this->velocity = this->velocity - d * vel_correction_factor;
+      p.velocity = p.velocity + d * vel_correction_factor;
+    }
+  }
+}
+//TODO: optimise it after climbing 
+int Particle::Which_side(){
+  vec next_pos = this->position + (this->velocity * deltatime);
+  if (next_pos.x < sides_border){
+    return 0;
+  }
+  else {
+    return 1;
   }
 }

@@ -9,5 +9,6 @@ extern double deltatime; // time of one step
 extern int frame_rate;
 extern int radius;
 extern int max_speed;
+extern int sides_border; // var to divide the volume 
 
 #endif
