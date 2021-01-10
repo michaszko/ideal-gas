@@ -52,6 +52,10 @@ double vec::norm() { // norm of a vector
   return sqrt((*this) ^ (*this));
 }
 
+double vec::norm_sqr() { // square of norm - for skipping square root
+  return (*this) ^ (*this);
+}
+
 vec vec::normalize() { // normalized vector
   return (*this) / ((*this).norm());
 }

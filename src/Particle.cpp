@@ -53,7 +53,7 @@ void Particle::isParticleHit(Particle &p) {
     // coeficiant of a interaction - derived from conservation of momentum
     // assuming that both paritcles has the same mass
       double vel_correction_factor =
-      ((this->velocity - p.velocity) ^ d) / (d.norm() * d.norm());
+      ((this->velocity - p.velocity) ^ d) / d.norm_sqr();
     // changing velocities of both particles
       this->velocity = this->velocity - d * vel_correction_factor;
       p.velocity = p.velocity + d * vel_correction_factor;

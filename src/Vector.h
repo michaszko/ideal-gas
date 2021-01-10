@@ -22,6 +22,7 @@ public:
   double operator^(vec b);
 
   double norm();
+  double norm_sqr();
   vec normalize();
 
   friend std::ostream &operator<<(std::ostream &out, const vec &b);
