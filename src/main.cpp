@@ -2,17 +2,19 @@
 #include "Particle.h"
 #include <stdlib.h> // srand, rand
 #include <time.h>   // time
+#include <vector>
 
 // Global variables
 int H = 800; // screen heigh
 int W = 600; // screen width
-int N = 100; // number of particles - 500 is still good, 1000 not
+int N = 5;   // number of particles - 500 is still good, 1000 not
 
-int frame_rate = 60;    // frames per second
+int frame_rate = 2;     // frames per second
 int radius = 5;         // radius of every ball
 int max_speed = 20;     // maximal speed upon the generation of particles
 double deltatime = 0.2; // time of one step
- int sides_border = 300; // var to divide the volume 
+int sides_border = 300; // var to divide the volume
+std::vector<double> x_pos;
 
 int main() {
   sf::RenderWindow window(sf::VideoMode(H, W), "Particles"); // render a window
@@ -47,7 +49,22 @@ int main() {
       particles[i].move();
       // draw particles on the screen
       particles[i].draw(window);
+      // add x_pos to vector
+      x_pos.push_back(particles[i].position.x);
     }
+    
+    // sort this vecotr 
+    std::sort(x_pos.begin(), x_pos.end());
+    
+    // debugging
+    std::cout << "myvector contains:";
+    for (std::vector<double>::iterator it = x_pos.begin(); it != x_pos.end(); ++it)
+      std::cout << ' ' << *it;
+
+    std::cout << "\n";
+    
+    // clear it every iteration
+    x_pos.clear();
 
     window.display();
 
