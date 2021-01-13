@@ -1,10 +1,10 @@
 # the compiler: gcc for C program, define as g++ for C++
 CC = g++
-
 # compiler flags:
 #  -g     - this flag adds debugging information to the executable file
 #  -Wall  - this flag is used to turn on most compiler warnings
-CFLAGS  = -g -Wall 
+# -std=c++14 flag for mac compiler (clang) to force ut to use c++14
+CFLAGS  =   -g -Wall -std=c++14
 LSFMFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
 #mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 #current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
