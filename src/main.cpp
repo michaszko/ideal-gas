@@ -7,7 +7,7 @@
 // Global variables
 const int H = 800; // screen heigh
 const int W = 600; // screen width
-const int N = 196; // number of particles - 500 is still good, 1000 not
+const int N = 196;  // number of particles - 500 is still good, 1000 not
 
 int frame_rate = 60;    // frames per second
 int radius = 5;         // radius of every ball
@@ -49,8 +49,10 @@ int main() {
     particles[i].shape.setRadius(radius);
   }
 
+  // init counters
   int counter_colision_particles = 0;
   int counter_colision_wall = 0;
+
   // main loop
   while (window.isOpen()) {
     // filling vecotr
@@ -77,13 +79,13 @@ int main() {
       int j = i + 1;
       // if next particle is close (4 radii) check interesection - it prevents
       // form checking between really distant particles
-      while (x_pos[j].second - x_pos[i].second <= 2 * radius) {
+      while (x_pos[j].second - x_pos[i].second <= 8 * radius) {
         // check colisions and count them
         counter_colision_particles +=
             particles[x_pos[i].first].isParticleHit(particles[x_pos[j].first]);
         // dunno why this line is needed - without it I get segmentation
         // violation
-        if (j < x_pos.size())
+        if (j < x_pos.size() - 1)
           j++;
         else
           break;
@@ -95,7 +97,7 @@ int main() {
 
     for (int i = 0; i < N; i++) {
       // check colision with the walls and count them -> later one can use it
-      // to calculate a preasure in the box 
+      // to calculate a preasure in the box
       counter_colision_wall += particles[i].isWallHit();
       // move particles
       particles[i].move();
@@ -103,7 +105,7 @@ int main() {
       particles[i].draw(window);
     }
 
-    // show counters 
+    // show counters
     std::cout << counter_colision_particles << "  " << counter_colision_wall
               << "\r";
 

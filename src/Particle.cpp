@@ -34,8 +34,10 @@ int Particle::isWallHit() {
     hit = true;
   }
 
-  if(hit) return 1;
-  else return 0;
+  if (hit)
+    return 1;
+  else
+    return 0;
 }
 
 int Particle::isParticleHit(Particle &p) {
@@ -64,6 +66,12 @@ int Particle::isParticleHit(Particle &p) {
       // changing velocities of both particles
       this->velocity = this->velocity - d * vel_correction_factor;
       p.velocity = p.velocity + d * vel_correction_factor;
+      // change position to prevent particle inside the other particle 
+      // TODO check if this is correct formula
+      this->position = this->position +
+                       d.normalize() * (this->shape.getRadius() - d.norm() / 2);
+      p.position = p.position -
+                       d.normalize() * (p.shape.getRadius() - d.norm() / 2);
       counter++;
     }
   }
