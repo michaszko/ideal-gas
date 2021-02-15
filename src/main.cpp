@@ -5,9 +5,9 @@
 #include <vector>
 
 // Global variables
-int H = 800; // screen heigh
-int W = 600; // screen width
-int N = 100; // number of particles - 500 is still good, 1000 not
+const int H = 800; // screen heigh
+const int W = 600; // screen width
+const int N = 196; // number of particles - 500 is still good, 1000 not
 
 int frame_rate = 60;    // frames per second
 int radius = 5;         // radius of every ball
@@ -29,15 +29,28 @@ int main() {
 
   // initializing of pos, vel and radii of all particles
   for (int i = 0; i < N; i++) {
-    particles[i].position.x = rand() % H;
-    particles[i].position.y = rand() % W;
+    // use random placement of particles - can overlap
+    /* particles[i].position.x = rand() % H; */
+    /* particles[i].position.y = rand() % W; */
 
-    particles[i].velocity.x = rand() % max_speed;
-    particles[i].velocity.y = rand() % max_speed;
+    // start with particles in the grid - use N which is square of some number
+    int sqrtN = (int)sqrt(N);
+    particles[i].position.x = H / sqrtN * (i / sqrtN) + radius;
+    particles[i].position.y = W / sqrtN * (i % sqrtN) + radius;
+
+    // random velocity
+    particles[i].velocity.x = rand() % max_speed - 0.5 * max_speed;
+    particles[i].velocity.y = rand() % max_speed - 0.5 * max_speed;
+
+    // for testing - zero velocity
+    /* particles[i].velocity.x = 0; */
+    /* particles[i].velocity.y = 0; */
 
     particles[i].shape.setRadius(radius);
   }
 
+  int counter_colision_particles = 0;
+  int counter_colision_wall = 0;
   // main loop
   while (window.isOpen()) {
     // filling vecotr
@@ -64,8 +77,10 @@ int main() {
       int j = i + 1;
       // if next particle is close (4 radii) check interesection - it prevents
       // form checking between really distant particles
-      while (x_pos[j].second - x_pos[i].second <= 4 * radius) {
-        particles[x_pos[i].first].isParticleHit(particles[x_pos[j].first]);
+      while (x_pos[j].second - x_pos[i].second <= 2 * radius) {
+        // check colisions and count them
+        counter_colision_particles +=
+            particles[x_pos[i].first].isParticleHit(particles[x_pos[j].first]);
         // dunno why this line is needed - without it I get segmentation
         // violation
         if (j < x_pos.size())
@@ -79,11 +94,18 @@ int main() {
     x_pos.clear();
 
     for (int i = 0; i < N; i++) {
-      // move particles - with checking walls
+      // check colision with the walls and count them -> later one can use it
+      // to calculate a preasure in the box 
+      counter_colision_wall += particles[i].isWallHit();
+      // move particles
       particles[i].move();
       // draw particles on the screen
       particles[i].draw(window);
     }
+
+    // show counters 
+    std::cout << counter_colision_particles << "  " << counter_colision_wall
+              << "\r";
 
     window.display();
 

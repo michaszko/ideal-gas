@@ -10,8 +10,8 @@ public:
   void move();
   void draw(sf::RenderWindow &);
 
-  void isWallHit();
-  void isParticleHit(Particle &);
+  int isWallHit();
+  int isParticleHit(Particle &);
   int Which_side(); // checking on which side of the grid is the particle 
 
   vec position;
